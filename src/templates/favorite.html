@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorite Articles</title>
+</head>
+<body>
+<h1>Favorite Articles</h1>
+<table>
+    <tr>
+        <th>Article Title</th>
+        <th>Author</th>
+        <th>Manage</th>
+    </tr>
+    {% for article in articles %}
+    <tr>
+        <td><a href="/view/article/{{article.blog_id}}//{{article.post_id}}">{{ article.title }}</a></td>
+        <td>{{ article.author }}</td>
+        <td>
+            <form action="/favorite/delete/{{ article.post_id }}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Back to Top</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login History</title>
+</head>
+<body>
+<h1>Login History</h1>
+<table>
+    <tr>
+        <th>Login Datetime</th>
+        <th>Login IP address</th>
+    </tr>
+    {% for record in records %}
+    <tr>
+        <td>{{ record.datetime }}</td>
+        <td>{{ record.ip_address }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Back to Top</a>
+</body>
+</html>

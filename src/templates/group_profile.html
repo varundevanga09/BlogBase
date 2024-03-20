@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ group_name }}</title>
+</head>
+<body>
+<h1>{{ group_name }}</h1>
+
+<h2>Members</h2>
+<ul>
+    {% for member in members %}
+    <li><a href="/user_profile/{{ member.id }}">{{ member.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if is_member %}
+<form action="/group/leave/{{ group_id }}" method="post">
+    <input type="submit" value="Leave Group">
+</form>
+{% else %}
+<form action="/group/join/{{ group_id }}" method="post">
+    <input type="submit" value="Join Group">
+</form>
+{% endif %}
+
+<h2>Latest Posts</h2>
+<ul>
+    {% for post in latest_posts %}
+    <li><a href="/view/article/{{post.blog_id}}/{{post.post_id}}">{{ post.title }} by {{ post.author }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if is_member %}
+<h2>Member-only Posts</h2>
+<ul>
+    {% for post in member_only_posts %}
+    <li><a href="/view/article/{{post.blog_id}}/{{post.post_id}}">{{ post.title }} by {{ post.author }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="/">Back to Top</a>
+</body>
+</html>

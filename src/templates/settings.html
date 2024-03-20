@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
+<h1>Edit Profile</h1>
+<form method="post">
+    <label for="bio">Bio:</label><br>
+    <textarea id="bio" name="bio">{{ bio }}</textarea><br>
+    <label for="birthday">Birthday:</label><br>
+    <input type="date" id="birthday" name="birthday" value="{{ birthday }}"><br>
+    <label for="interest_tags">Tags:</label><br>
+    <input type="text" id="interest_tags" name="interest_tags" value="{{interest_tags if interest_tags else ''}}"><br>
+    Please specify up to 3 tags.<br>
+    Please separate them with commas(<b>,</b>).<br>
+    <br>
+    <input type="submit" value="Save">
+</form>
+<br><br>
+<a href="/user_profile/{{user_id}}">Your Profile Page</a><br>
+<a href="/">Back to Top</a>
+</body>
+</html>

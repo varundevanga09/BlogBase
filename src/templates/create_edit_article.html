@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Edit' if title else 'Create' }} Article</title>
+</head>
+<body>
+<h1>Blog Name: {{ blog_name }}</h1>
+
+<form method="POST" action="/manage/article/{{ 'edit/' + blog_id + '/' + article_id if title else 'create' }}">
+    <input type="hidden" name="blog_id" value="{{ blog_id }}">
+    <input type="hidden" name="article_id" value="{{ article_id if article_id else '' }}">
+
+    <label for="title">Article Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ title if title else '' }}"><br>
+
+    <label for="content">Article Content:</label><br>
+    <textarea id="content" name="content">{{ content if content else '' }}</textarea><br>
+
+    <label for="visibility">Visibility:</label><br>
+    <select id="visibility" name="visibility">
+        <option value="1" {{ 'selected' if visibility == 1 else '' }} >Visible to All</option>
+        <option value="2" {{ 'selected' if visibility == 2 else '' }} >Visible to Group</option>
+        <option value="3" {{ 'selected' if visibility == 3 else '' }} >Visible to Friends</option>
+        <option value="4" {{ 'selected' if visibility == 4 else '' }} >Visible to Me Only</option>
+    </select><br>
+    <label for="posttags">Tags:</label><br>
+    <input type="text" id="posttags" name="posttags" value="{{posttags if posttags else ''}}"><br>
+    Please specify up to 3 tags.<br>
+    Please separate them with commas(<b>,</b>).<br>
+    <br>
+    <input type="submit" value="{{ 'Update' if title else 'Submit' }}">
+</form>
+<a href="/manage/blog">Back to Blog list</a><br>
+<a href="/">Back to Top</a>
+</body>
+</html>

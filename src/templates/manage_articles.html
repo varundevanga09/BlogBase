@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Management</title>
+</head>
+<body>
+<h1>Article Management</h1>
+<a href="/view/blog/{{blog_id}}">View this blog</a><br>
+<a href="/manage/article/create?blog_id={{blog_id}}">Write a new article</a>
+<table>
+    <thead>
+    <tr>
+        <th>Article Name</th>
+        <th>Last Updated</th>
+        <th>Number of Comments</th>
+        <th>Number of Favorites</th>
+        <th>Manage</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for article in articles %}
+    <tr>
+        <td><a href="/manage/article/edit/{{blog_id}}/{{article.id}}">{{article.title}}</a></td>
+        <td>{{article.updated_date}}</td>
+        <td>{{article.comment_count}}</td>
+        <td>{{article.favorite_count}}</td>
+        <td>
+            <button onclick="post('/manage/article/delete/{{blog_id}}/{{article.id}}')">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!-- This script sends a POST request when the delete button is clicked -->
+<script type="text/javascript">
+    function post(path) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", path);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+<a href="/manage/blog">Back to Blog list</a><br>
+<a href="/">Back to Top</a>
+</body>
+</html>

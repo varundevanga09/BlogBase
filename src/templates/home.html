@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Hello, {{ username }}</h1>
+<a href="/logout">Logout</a>
+
+<h2>Menu</h2>
+<ul>
+    <li><a href="/manage/blog">Manage blogs and posts</a></li>
+    <li><a href="/friends">Friend list</a></li>
+    <li><a href="/groups">Group list</a></li>
+    <li><a href="/settings">Settings</a></li>
+    <li><a href="/login_history">Login history</a></li>
+    <li><a href="/favorite">Favorite posts</a></li>
+</ul>
+
+<h2>Recent articles</h2>
+<ul>
+    {% for article in articles %}
+    <li><a href="/view/article/{{article.blog_id}}/{{article.post_id}}">{{ article.title }}</a>
+        by {{ article.author }} ({{ article.update_time }})
+    </li>
+    {% endfor %}
+</ul>
+
+{% if notifications %}
+<h2>Notification</h2>
+{% for notification in notifications %}
+<p><a href="{{ notification.link }}">{{ notification.body }}</a> ({{ notification.time }})</p>
+{% endfor %}
+{% endif %}
+
+
+</body>
+</html>

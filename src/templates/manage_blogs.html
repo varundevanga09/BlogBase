@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Management</title>
+</head>
+<body>
+<h1>Blog Management</h1>
+
+<a href="/manage/blog/create">Create New Blog</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Blog Name</th>
+        <th>Manage</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for blog in blogs %}
+    <tr>
+        <td><a href="/manage/{{blog.id}}/articles">{{ blog.title }}</a></td>
+        <td>
+            <form action="/manage/blog/edit/{{ blog.id }}" method="get">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/manage/blog/delete/{{ blog.id }}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="/">Back to Top</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{blog_title}}</title>
+</head>
+<body>
+<h1>{{blog_title}}</h1>
+{{blog_description}}
+<br><br>
+Blog Owner: <a href="/user_profile/{{user_id}}">{{username}}</a>
+<br><br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Article Name</th>
+        <th>Last Updated</th>
+        <th>Number of Comments</th>
+        <th>Number of Favorites</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for article in articles %}
+    <tr>
+        <td><a href="/view/article/{{blog_id}}/{{article.id}}">{{article.title}}</a></td>
+        <td>{{article.updated_date}}</td>
+        <td>{{article.comment_count}}</td>
+        <td>{{article.favorite_count}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br><br>
+<a href="/">Back to Top</a>

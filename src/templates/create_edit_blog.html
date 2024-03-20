@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Create New Blog' if not blog else 'Blog Editor' }}</title>
+</head>
+<body>
+    <h1>{{ 'Create New Blog' if not blog else 'Blog Editor' }}</h1>
+
+    <form action="{{ url }}" method="post">
+        <label for="title">Blog Title:</label><br>
+        <input type="text" id="title" name="title" value="{{ blog.title if blog else '' }}"><br>
+        <label for="description">Blog Description:</label><br>
+        <textarea id="description" name="description">{{ blog.description if blog else '' }}</textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+<a href="/manage/blog">Back to Blog list</a><br>
+<a href="/">Back to Top</a>
+</body>
+</html>

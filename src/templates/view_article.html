@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{blog_title}}</title>
+</head>
+<body>
+<h2>{{blog_title}}</h2>
+<h1>{{article_title}}</h1>
+Created: {{create_date}}<br>
+Updated: {{updated_date}}<br>
+By: <a href="/user_profile/{{user_id}}">{{username}}</a><br>
+
+{% if visibility == 1 %}
+Visible to All
+{% elif visibility == 2 %}
+Visible to Group
+{% elif visibility == 3 %}
+Visible to Friends
+{% elif visibility == 4 %}
+Visible to Me Only
+{% endif %}
+
+<hr>
+{{content}}
+<hr>
+
+Comment:<br>
+<form action="/comment/{{blog_id}}/{{article_id}}" method="post">
+    <textarea name="comment" id="comment" rows="4" cols="50"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% for comment in comments %}
+<hr>
+<p><strong>Comment by:</strong> <a href="/user_profile/{{comment.user_id}}">{{comment.username}}</a></p>
+<p><strong>Comment:</strong> {{comment.text}}</p>
+<p><strong>Date:</strong> {{comment.date}}</p>
+<hr>
+{% endfor %}
+
+
+<form action="/favorite/add/{{article_id}}" method="post">
+    <input type="submit" value="Like">
+</form>
+
+<form action="/favorite/delete/{{article_id}}" method="post">
+    <input type="submit" value="UnLike">
+</form>
+
+<br><br>
+<a href="/view/blog/{{blog_id}}">Back to Blog Top</a><br>
+<a href="/">Back to Top</a>
+</body>
+</html>

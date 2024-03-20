@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friend List</title>
+</head>
+<body>
+<h1>Friend List</h1>
+<table>
+    <tr>
+        <th>User Name</th>
+        <th>Manage</th>
+    </tr>
+    {% for friend in friends %}
+    <tr>
+        <td><a href="/user_profile/{{ friend.id }}">{{ friend.name }}</a></td>
+        <td>
+            {% if friend.is_me and not friend.is_approved %}
+            Pending Approval
+            {% elif not friend.is_me and not friend.is_approved %}
+            <form action="/friend/approve/{{ friend.id }}" method="post">
+                <input type="submit" value="Approve">
+            </form>
+            <form action="/friend/delete/{{ friend.id }}" method="post">
+                <input type="submit" value="Reject">
+            </form>
+            {% elif friend.is_approved %}
+            <form action="/friend/delete/{{ friend.id }}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/">Back to Top</a>
+</body>
+</html>

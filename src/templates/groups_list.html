@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group List</title>
+</head>
+<body>
+<h1>Group List</h1>
+<table>
+    <tr>
+        <th>Group Name</th>
+        <th>Owner User ID</th>
+    </tr>
+    {% for group in groups %}
+    <tr>
+        <td><a href="/group_profile/{{ group.id }}">{{ group.name }}</a></td>
+        <td>{{ group.owner_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Back to Top</a>
+</body>
+</html>

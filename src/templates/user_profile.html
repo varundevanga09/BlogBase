@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user_name }}</title>
+</head>
+<body>
+<h1>{{ user_name }}</h1>
+
+<h2>Bio</h2>
+<p>{{ bio if bio else 'Not registered' }}</p>
+
+<h2>Birthday</h2>
+<p>{{ birthday if birthday else 'Not registered' }}</p>
+
+<h2>Interest Tags</h2>
+{% if tags %}
+<ul>
+    {% for tag in tags %}
+    <li>{{ tag }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Not registered</p>
+{% endif %}
+
+<h2>Blog List</h2>
+<ul>
+    {% for blog in blogs %}
+    <li><a href="/view/blog/{{blog.id}}">{{ blog.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2>Friend List</h2>
+<ul>
+    {% for friend in friends %}
+    <li><a href="/user_profile/{{ friend.id }}">{{ friend.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if not is_me %}
+{% if is_friend %}
+<p>You are friends</p>
+{% else %}
+<form action="/friend/add/{{ user_id }}" method="post">
+    <input type="submit" value="Add Friend">
+</form>
+{% endif %}
+{% endif %}
+
+<a href="/">Back to Top</a>
+</body>
+</html>
