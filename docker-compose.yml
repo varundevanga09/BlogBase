@@ -1,0 +1,23 @@
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app
+    tty: true
+    ports:
+      - "8080:5000"
+    environment:
+      - TZ=America/Los_Angeles
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: BlogService
+      TZ: America/Los_Angeles
